@@ -52,7 +52,7 @@ export const AppProvider = ({ children }: AppContextProps) => {
             .join('-')
             .toLowerCase()
             .split('-')
-            .includes(el)
+            .includes(el.toLowerCase())
         ) && item
     );
 
