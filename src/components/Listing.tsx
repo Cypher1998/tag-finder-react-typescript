@@ -6,22 +6,25 @@ type ListingProps = {
 
 const Listing = ({ listing }: ListingProps) => {
   return (
-    <div className="listingContainer">
-      <div className="listingImage">
-        <img src={listing.logo} alt="logo" />
-      </div>
-      <div className="listingDetails">
-        <div className="divOne">
-          <span>{listing.company}</span>
-          {listing.new && <span>NEW!</span>}
-          {listing.featured && <span>FEATURED</span>}
+    <div className={`listingContainer ${listing.featured && 'featuredBorder'}`}>
+      <div className="sublistingContainer">
+        <div className="listingImage">
+          <img src={listing.logo} alt="logo" />
         </div>
-        <p>{listing.position}</p>
-        <div className="divTwo">
-          <span>{listing.postedAt}</span>
-          <span>{listing.contract}</span>
-          <span>{listing.location}</span>
+        <div className="listingDetails">
+          <div className="divOne">
+            <span className="company">{listing.company}</span>
+            {listing.new && <span className="new">NEW!</span>}
+            {listing.featured && <span className="featured">FEATURED</span>}
+          </div>
+          <p>{listing.position}</p>
+          <ul className="divTwo">
+            <li>{listing.postedAt}</li>
+            <li>{listing.contract}</li>
+            <li>{listing.location}</li>
+          </ul>
         </div>
+        <hr />
       </div>
       <div className="listingTag">
         {[
@@ -30,9 +33,9 @@ const Listing = ({ listing }: ListingProps) => {
           ...listing.languages,
           ...listing.tools,
         ].map((item, index) => (
-          <div key={index} className="listingTagItem">
-            <p>{item}</p>
-          </div>
+          <p key={index} className="listingTagItem">
+            {item}
+          </p>
         ))}
       </div>
     </div>
